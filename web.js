@@ -1,12 +1,11 @@
-var express = require('express');
-
-var app = express.createServer(express.logger());
-
-app.get('/', function(request, response) {
-  response.send('Hello World!');
-});
-
-var port = process.env.PORT || 3333;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+var http = require('http'),
+    httpProxy = require('http-proxy');
+    port = process.env.PORT || 8000;
+httpProxy.createServer(function (req, res, proxy) {
+  res.setHeader('Access-Control-Allow-Origin', process.env.YAPP_S3PROXY_CORS_ALLOW_ORIGIN);
+  proxy.proxyRequest(req, res, {
+    host: 's3.amazonaws.com',
+    port: 80
+  });
+  res
+}).listen(port);

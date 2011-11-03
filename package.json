@@ -1,7 +1,7 @@
 {
-  "name": "yapp-proxy",
+  "name": "yapp-s3proxy",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.2.0"
+    "http-proxy": "0.7.3"
   }
 }
